@@ -14,68 +14,68 @@ $(document).ready(function() {
 
     var apiKey = "&api_key=fn0bW7TVjeOWKEjDscrvGdRIZtxINcqf";
 
-    var topics = ['simpsons', 'family guy', 'archer']
+    var topics = ['Simpsons', 'Family Guy', 'Archer', 'Metalocalypse']
 
-    // console.log('sample url', api + query + apiKey + '&limit=10')
     // Create buttons for existing cartoons when page loads
-
-        // Create an unorganized list to house the buttons on the website
-        $("#gifs").append('<ul id="button-list"></ul>');
-
-        // Insert <li> elements for individual buttons
+        
             // Create for loop to make button for every item in array
         for (var i = 0; i < topics.length; i++) { 
             // Append buttons to #button-list
-            $("#button-list").append("<button>" + topics[i] + "</button>")
+            $("#buttons-go-here").append("<button class= 'cartoonButtons'>" + topics[i] + "</button>");
+            $(".cartoonButtons").css({
+                "background-color": "#c5a996",
+                "border": "1px solid #fff",
+                "color": "#000",
+                "font-family": "Georgia",
+                "padding": "10px",
+                "margin": "10px",
+            })
         
         }
-        // <button> <input type="button" value="">
 
     // On click, button pulls 10 images using Giphy API and displays them in a new div with rating
-
-        // Create div for new gifs to appear (placeholder)
-        $("#gifs").after("<div id= gifShow>");
-
+       
         // Click listener
-        $("button").click(function (e) {
+        $(".cartoonButtons").click(function (e) {
+            e.preventDefault();
             
             var clickedCartoon = api + query + e.target.innerText + apiKey + '&limit=10';
 
+            //Ajax request
             $.ajax({
                 url: clickedCartoon,
                 method: "GET"
             })
+            // Once response received...
             .done(function(response) {
-                var results = response.data;
+                 var results = response.data;
+                 console.log(results);
 
                 for (var i = 0; i < results.length; i++) {
-                    var gifDiv = $("<div>");
                     var rating = results[i].rating;
-                    var p = $("<p>").text("Rating: " + rating);
-
-                var personImage = $("<img>");
-                personImage.attr("src", results[i].images.fixed_height.url);
-
-                gifDiv.prepend(p);
-                gifDiv.prepend(personImage);
-
-                $("#gifs-appear-here").prepend(gifDiv);
+                    console.log(rating);
+                    var p = $("<p>").text(" Rating: " + rating);
+                    var cartoonImage = $("<img>");
+                    $(cartoonImage).attr("src", results[i].images.fixed_height.url);
+                    $("#gifs-go-here").append(p);
+                    $(p).prepend(cartoonImage);
+                    
                 }
             })
-
-        // Create AJAX request
-
-        // Append images to page. Display rating.
-
+        })
 
 
     // Users can enter new cartoons to add buttons to the list
         
-        // Create on click listener for the submit button
+            // Append a submit button underneath the formon main page for the submit button
+            $(".form-group").append("<button>Submit");
+            // 
         // Use e.preventDefault() on submit button to prevent page refresh
+        e.preventDefault();
+
 
         // Append the value from the string to a new <li> element in the unorganized list on main page
-
+})
 
 
 
