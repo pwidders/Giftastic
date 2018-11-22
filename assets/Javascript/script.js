@@ -57,8 +57,8 @@ $(document).ready(function() {
                     var p = $("<p>").text(" Rating: " + rating);
                     var cartoonImage = $("<img>");
                     $(cartoonImage).attr("src", results[i].images.fixed_height.url);
-                    $("#gifs-go-here").append(p);
-                    $(p).prepend(cartoonImage);
+                    $("#gifs-go-here").prepend(p);
+                    $(p).after(cartoonImage);
                     
                 }
             })
@@ -67,11 +67,15 @@ $(document).ready(function() {
 
     // Users can enter new cartoons to add buttons to the list
         
-            // Append a submit button underneath the formon main page for the submit button
-            $(".form-group").append("<button>Submit");
-            // 
-        // Use e.preventDefault() on submit button to prevent page refresh
-        e.preventDefault();
+            // Append a submit button underneath the form on main page for the submit button
+            $(".form-group").append("<button id= 'submit'>Submit");
+            // Click listener
+            $("#submit").click( function (arrayPush) {
+                // Use e.preventDefault() on submit button to prevent page refresh
+                e.preventDefault();
+                var newTopic= $("#cartoon-new-input").val();
+                console.log(newTopic);
+            })
 
 
         // Append the value from the string to a new <li> element in the unorganized list on main page
