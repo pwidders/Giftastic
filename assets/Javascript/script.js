@@ -1,7 +1,7 @@
 // Requirements: 
-//      Create buttons dynamically with jQuery labeled with various cartoons
-//      When clicked, each cartoon button pulls 10 images from Giphy API with ratings                     displayed under each image
-//      Users can enter a new cartoon in the input bar, which creates a new button for          the requested cartoon 
+//  Create buttons dynamically with jQuery labeled with various cartoons
+//  When clicked, each cartoon button pulls 10 images from Giphy API with ratings displayed     under each image
+//  Users can enter a new cartoon in the input bar, which creates a new button for the          requested cartoon 
 
 $(document).ready(function() {
     console.log('are we in here?')
@@ -20,7 +20,6 @@ $(document).ready(function() {
     $(".form-group").append("<button id= 'submit' type= 'button'>Submit"); 
 
     // Create buttons for existing cartoons when page loads
-        
         // Create for loop to make button for every item in array
         for (var i = 0; i < topics.length; i++) { 
         // Append buttons to #button-list
@@ -35,10 +34,9 @@ $(document).ready(function() {
         })
         }
 
-        // Users can enter new cartoons to add buttons to the list
+    // Users can enter new cartoons to add buttons to the list
         // Click listener
         $(document).on('click', '#submit', function(){
-            var userPicks= [];
             var userInput= $("#cartoon-new-input").val();
             // Create new button from user input
             $("#buttons-go-here").append("<button class= 'userAdds'>" + userInput + "</button>");
@@ -50,19 +48,12 @@ $(document).ready(function() {
                 "padding": "10px",
                 "margin": "10px",
             })
-            
-            // userPicks.push(userInput);
-            // // Create for loop to make button for every item in array
-            // for (var i = 0; i < userPicks.length; i++) { 
-            // // Append buttons to #button-list
-            // $("#buttons-go-here").append("<button class= 'cartoonButtons'>" + userPicks[i] + "</button>");
-            // }
         })
 
     // On click, button pulls 10 images using Giphy API and displays them in a new div with rating
        
         // Click listener
-        $(".cartoonButtons").click(function queryAPI (e) {
+        $(".cartoonButtons").click(function (e) {
         e.preventDefault();
             
         var clickedCartoon = api + query + e.target.innerText + apiKey + '&limit=10';
@@ -88,14 +79,33 @@ $(document).ready(function() {
             }
         })
     })
-   
+
+    // Request API for user added buttons
+        // Click listener
+        $(document).on('click', '.userAdds', function (e) {
+        //e.preventDefault();
+                    
+            var clickedCartoon = api + query + e.target.innerText + apiKey + '&limit=10';
+        
+            //Ajax request
+            $.ajax({
+                url: clickedCartoon,
+                 method: "GET"
+            })
+            // Once response received...
+            .done(function(response) {
+                var results = response.data;
+                console.log(results);
+                // for loop to display images and ratings
+                for (var i = 0; i < results.length; i++) {
+                    var rating = results[i].rating;
+                    console.log(rating);
+                    var p = $("<p>").text(" Rating: " + rating);
+                    var cartoonImage = $("<img>");
+                    $(cartoonImage).attr("src", results[i].images.fixed_height.url);
+                    $("#gifs-go-here").prepend(p);
+                    $(p).after(cartoonImage);     
+                    }
+                })
+            })
 })
-
-
-
-
-
-
-
-
-
