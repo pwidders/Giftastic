@@ -16,13 +16,33 @@ $(document).ready(function() {
 
     var topics = ['Simpsons', 'Family Guy', 'Archer', 'Metalocalypse', 'South Park', 'Futurama', 'Doug', 'Rugrats', 'Looney Tunes', 'Rick and Morty']
 
+    // Append a submit button underneath the form on main page for the submit button
+    $(".form-group").append("<button id= 'submit' type= 'button'>Submit"); 
+
     // Create buttons for existing cartoons when page loads
         
-            // Create for loop to make button for every item in array
-            for (var i = 0; i < topics.length; i++) { 
-            // Append buttons to #button-list
-            $("#buttons-go-here").append("<button class= 'cartoonButtons'>" + topics[i] + "</button>");
-            $(".cartoonButtons").css({
+        // Create for loop to make button for every item in array
+        for (var i = 0; i < topics.length; i++) { 
+        // Append buttons to #button-list
+        $("#buttons-go-here").append("<button class= 'cartoonButtons'>" + topics[i] + "</button>");
+        $(".cartoonButtons").css({
+            "background-color": "#c5a996",
+            "border": "3px solid #fff",
+            "color": "#000",
+            "font-family": "Comic sans ms",
+            "padding": "10px",
+            "margin": "10px",
+        })
+        }
+
+        // Users can enter new cartoons to add buttons to the list
+        // Click listener
+        $(document).on('click', '#submit', function(){
+            var userPicks= [];
+            var userInput= $("#cartoon-new-input").val();
+            // Create new button from user input
+            $("#buttons-go-here").append("<button class= 'userAdds'>" + userInput + "</button>");
+            $(".userAdds").css({
                 "background-color": "#c5a996",
                 "border": "3px solid #fff",
                 "color": "#000",
@@ -30,8 +50,14 @@ $(document).ready(function() {
                 "padding": "10px",
                 "margin": "10px",
             })
-        
-        }
+            
+            // userPicks.push(userInput);
+            // // Create for loop to make button for every item in array
+            // for (var i = 0; i < userPicks.length; i++) { 
+            // // Append buttons to #button-list
+            // $("#buttons-go-here").append("<button class= 'cartoonButtons'>" + userPicks[i] + "</button>");
+            // }
+        })
 
     // On click, button pulls 10 images using Giphy API and displays them in a new div with rating
        
@@ -62,15 +88,7 @@ $(document).ready(function() {
             }
         })
     })
-        // Users can enter new cartoons to add buttons to the list
-        // Append a submit button underneath the form on main page for the submit button
-        $(".form-group").append("<button id= 'submit' type= 'button'>Submit"); 
-        // Click listener
-        $(document).on('click', '#submit', function(){
-            var userInput= $("#cartoon-new-input").val();
-            // Create new button from user input
-            console.log(userInput);
-        }); 
+   
 })
 
 
