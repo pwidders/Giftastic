@@ -36,7 +36,7 @@ $(document).ready(function() {
     // On click, button pulls 10 images using Giphy API and displays them in a new div with rating
        
         // Click listener
-        $(".cartoonButtons").click(function (e) {
+        $(".cartoonButtons").click(function queryAPI (e) {
         e.preventDefault();
             
         var clickedCartoon = api + query + e.target.innerText + apiKey + '&limit=10';
@@ -62,20 +62,15 @@ $(document).ready(function() {
             }
         })
     })
-
-
-    // Users can enter new cartoons to add buttons to the list
-        
+        // Users can enter new cartoons to add buttons to the list
         // Append a submit button underneath the form on main page for the submit button
-        $(".form-group").append("<button id= 'submit'>Submit");
+        $(".form-group").append("<button id= 'submit' type= 'button'>Submit"); 
         // Click listener
-        $("#submit").click( function (e) {
-        // Use e.preventDefault() on submit button to prevent page refresh
-        e.preventDefault();
-        var newTopic= $("#cartoon-new-input").text();
-        console.log(newTopic);
-        })
-
+        $(document).on('click', '#submit', function(){
+            var userInput= $("#cartoon-new-input").val();
+            // Create new button from user input
+            console.log(userInput);
+        }); 
 })
 
 

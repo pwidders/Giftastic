@@ -16,3 +16,13 @@
 #gifs-go-here {
     background-color: lavender;
 }
+
+p {
+    display: inline-block;
+    margin-right: 30px;
+}
+
+img {
+    margin-right: 30px;
+    margin-bottom: 30px;
+}
