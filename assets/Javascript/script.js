@@ -8,7 +8,7 @@ $(document).ready(function() {
     
     // Global variables
 
-    var api = "http://api.giphy.com/v1/gifs/search?";
+    var api = "https://api.giphy.com/v1/gifs/search?";
 
     var query = "q="; 
 
