@@ -62,10 +62,9 @@ $(document).ready(function() {
         $.ajax({
             url: clickedCartoon,
             method: "GET"
-            })
+        })
         // Once response received...
         .done(function(response) {
-            console.log(response);
             var results = response.data;
             console.log(results);
 
@@ -74,15 +73,15 @@ $(document).ready(function() {
                 console.log(rating);
                 var p = $("<p>").text(" Rating: " + rating);
                 var cartoonImage = $("<img>");
-                $(cartoonImage).attr({
+                cartoonImage.attr({
                     "src": results[i].images.fixed_height_still.url,
                     "data-still": results[i].images.fixed_height_still.url,
                     "data-animate": results[i].images.fixed_height.url,
-                    "data-state": "animate",
+                    "data-state": "still",
                     "class": "gif"
                 })
-                $("#gifs-go-here").append(p);
-                $("#gifs-go-here").append(cartoonImage);  
+                $("#gifs-go-here").prepend(p);
+                $(p).after(cartoonImage); 
             }
         })
     })
@@ -109,6 +108,7 @@ $(document).ready(function() {
                     console.log(rating);
                     var p = $("<p>").text(" Rating: " + rating);
                     var cartoonImage = $("<img>");
+                    console.log
                     cartoonImage.attr({
                         "src": results[i].images.fixed_height_still.url,
                         "data-still": results[i].images.fixed_height_still.url,
@@ -116,22 +116,20 @@ $(document).ready(function() {
                         "data-state": "still",
                         "class": "gif"
                     });
-                    $("#gifs-go-here").append(p);
-                    $("#gifs-go-here").append(cartoonImage);  
+                    $("#gifs-go-here").prepend(p);
+                    $(p).after(cartoonImage); 
                 }
             })
         })
 
     // On click function to swap still gif for animated gif
-        // This line selects ALL elements with the "gif" class and adds
 	   // an event handler for the "click" event
-		$(".gif").on("click", function() {
+        $(document).on("click", ".gif", function () {
 			console.log('we in the click!');
 			// $(this) just means "the element with class 'gif' that was clicked"
 		   var state = $(this).attr("data-state");
 		   
-		   // $(this).attr("data-state") will either be "still" or "animate"
-		   // IF it's still: we change it to animate
+		   // If still, change to animate
 		   if (state === "still") {
 			   
 			   var newSrc = $(this).attr("data-animate");
@@ -144,5 +142,5 @@ $(document).ready(function() {
 			   $(this).attr("src", newSrc);
 			   $(this).attr("data-state", "still");
 		   }
-	   }); 
+	   })
 })
