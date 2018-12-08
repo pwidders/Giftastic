@@ -18,7 +18,7 @@ No installation is needed on your machine other than a web browser. This web app
 
 You can view a live version of this web application here:
 
-https://pwidders.github.io/Giftastic/
+https://pwidders.github.io/Giftoonopia/
 
 ### Built With
 
