@@ -66,7 +66,9 @@ $(document).ready(function() {
         // Once response received...
         .done(function(response) {
             var results = response.data;
-            console.log(results);
+            // Clear gif div and then add instructions
+            $("#gifs-go-here").empty();
+            $("#gifs-go-here").append("<h3>Click an image below to watch it move!</h3>");
 
             for (var i = 0; i < results.length; i++) {
                  var rating = results[i].rating;
@@ -80,7 +82,7 @@ $(document).ready(function() {
                     "data-state": "still",
                     "class": "gif"
                 })
-                $("#gifs-go-here").prepend(p);
+                $("#gifs-go-here").append(p);
                 $(p).after(cartoonImage); 
             }
         })
@@ -101,7 +103,9 @@ $(document).ready(function() {
             // Once response received...
             .done(function(response) {
                 var results = response.data;
-                console.log(results);
+                // Clear gif div and then add instructions
+                $('#gifs-go-here').empty();
+                $("#gifs-go-here").append("<h3>Click an image below to watch it move!</h3>");
                 // for loop to display images and ratings
                 for (var i = 0; i < results.length; i++) {
                     var rating = results[i].rating;
@@ -116,7 +120,7 @@ $(document).ready(function() {
                         "data-state": "still",
                         "class": "gif"
                     });
-                    $("#gifs-go-here").prepend(p);
+                    $("#gifs-go-here").append(p);
                     $(p).after(cartoonImage); 
                 }
             })
@@ -125,7 +129,6 @@ $(document).ready(function() {
     // On click function to swap still gif for animated gif
 	   // an event handler for the "click" event
         $(document).on("click", ".gif", function () {
-			console.log('we in the click!');
 			// $(this) just means "the element with class 'gif' that was clicked"
 		   var state = $(this).attr("data-state");
 		   
