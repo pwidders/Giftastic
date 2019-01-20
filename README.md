@@ -1,10 +1,10 @@
-# Gif-toon-opia
+# Gif-toon-opia!
 
-One Paragraph of project description goes here
+![](assets/images/giftastic.gif)
 
 ## Getting Started
 
-Welcome to Gif-toon-opia where all your magical giffyness can be explored! Choose from my pre-loaded cartoon-themed buttons, or branch off and choose your own. Each gif displays its rating and can be toggled between static and animated.
+Welcome to Gif-toon-opia where all your magical giffyness can be explored! Choose from the pre-loaded cartoon-themed buttons, or branch off and choose your own. Each gif displays its rating and can be toggled between static and animated.
 
 ### Prerequisites
 
